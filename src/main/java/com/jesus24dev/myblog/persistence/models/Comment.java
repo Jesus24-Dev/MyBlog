@@ -6,10 +6,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-public class Comment {
+public class Comment implements Serializable {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
