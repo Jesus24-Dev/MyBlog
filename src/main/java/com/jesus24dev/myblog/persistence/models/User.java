@@ -6,10 +6,11 @@ import jakarta.persistence.Entity;
 
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-public class User {
+public class User implements Serializable {
     
     @Id
     private String email;

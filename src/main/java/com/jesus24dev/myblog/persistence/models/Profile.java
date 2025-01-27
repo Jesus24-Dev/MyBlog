@@ -6,10 +6,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
-public class Profile {
+public class Profile implements Serializable {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
