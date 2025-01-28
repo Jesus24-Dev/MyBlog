@@ -17,6 +17,7 @@ import com.jesus24dev.myblog.persistence.models.Comment;
 import com.jesus24dev.myblog.persistence.models.Profile;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 
 /**
  *
@@ -27,6 +28,11 @@ public class ProfileJpaController implements Serializable {
     public ProfileJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
+    
+    public ProfileJpaController(){
+        emf = Persistence.createEntityManagerFactory("MyBlogJPU");
+    }
+    
     private EntityManagerFactory emf = null;
 
     public EntityManager getEntityManager() {
