@@ -29,8 +29,7 @@ public class Post implements Serializable {
     public Post() {
     }
 
-    public Post(Long id, String description, Date publishedAt, Profile profile, List<Comment> userComments) {
-        this.id = id;
+    public Post(String description, Date publishedAt, Profile profile, List<Comment> userComments) {
         this.description = description;
         this.publishedAt = publishedAt;
         this.profile = profile;

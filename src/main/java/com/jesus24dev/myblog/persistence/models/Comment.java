@@ -27,8 +27,7 @@ public class Comment implements Serializable {
     public Comment() {
     }
 
-    public Comment(Long id, String description, Date publishedAt, Profile profile, Post post) {
-        this.id = id;
+    public Comment(String description, Date publishedAt, Profile profile, Post post) {
         this.description = description;
         this.publishedAt = publishedAt;
         this.profile = profile;
