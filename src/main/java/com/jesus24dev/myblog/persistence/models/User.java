@@ -7,7 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 public class User implements Serializable {
@@ -20,7 +20,8 @@ public class User implements Serializable {
     
     private String name;
     private String lastname;
-    private Date birthday;
+    private String password;
+    private LocalDate birthday;
     private String gender;
     
     @OneToOne
@@ -29,16 +30,17 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(String email, String nickname, String name, String lastname, Date birthday, String gender, Profile profile) {
+    public User(String email, String nickname, String name, String lastname, String password, LocalDate birthday, String gender, Profile profile) {
         this.email = email;
         this.nickname = nickname;
         this.name = name;
         this.lastname = lastname;
+        this.password = password;
         this.birthday = birthday;
         this.gender = gender;
         this.profile = profile;
     }
-
+   
     public String getEmail() {
         return email;
     }
@@ -71,11 +73,21 @@ public class User implements Serializable {
         this.lastname = lastname;
     }
 
-    public Date getBirthday() {
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
+    
+
+    public LocalDate getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
     }
 
