@@ -1,6 +1,7 @@
 
 package com.jesus24dev.myblog.logic.controllers;
 
+import com.jesus24dev.myblog.persistence.controllers.exceptions.PreexistingEntityException;
 import com.jesus24dev.myblog.persistence.models.User;
 import com.jesus24dev.myblog.persistence.services.PersistenceServices;
 import java.util.ArrayList;
@@ -8,7 +9,7 @@ import java.util.ArrayList;
 public class UserController {
     PersistenceServices ps = new PersistenceServices();
     
-    public void createUser(User user){
+    public void createUser(User user) throws PreexistingEntityException{
         ps.userServices.createUser(user);
     }
     
