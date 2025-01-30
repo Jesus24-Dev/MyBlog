@@ -1,7 +1,6 @@
 
 package com.jesus24dev.myblog.logic.servlets.userservlets;
 
-import com.jesus24dev.myblog.logic.controllers.ProfileController;
 import com.jesus24dev.myblog.logic.controllers.UserController;
 import com.jesus24dev.myblog.persistence.models.User;
 import java.io.IOException;
@@ -15,7 +14,6 @@ import jakarta.servlet.http.HttpSession;
 @WebServlet(name = "SvUser", urlPatterns = {"/SvUser"})
 public class SvUser extends HttpServlet {
     UserController userController = new UserController();
-    ProfileController profileController = new ProfileController();
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -37,7 +35,7 @@ public class SvUser extends HttpServlet {
             User user = userController.getUser(email);
             
             if(user == null){
-                request.setAttribute("error", "user not founded");
+                request.setAttribute("errorSignIn", "user not founded");
                 request.getRequestDispatcher("index.jsp").forward(request, response);
             } else {
                 if (user.getPassword().equals(password)){
@@ -45,7 +43,7 @@ public class SvUser extends HttpServlet {
                     userSession.setAttribute("profileId", user.getProfile().getId());
                     response.sendRedirect("home.jsp");
                 } else {
-                    request.setAttribute("error", "password don't match");
+                    request.setAttribute("errorSignIn", "password don't match");
                     request.getRequestDispatcher("index.jsp").forward(request, response);
                 }                
             }        
