@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -18,7 +18,7 @@ public class Post implements Serializable {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     private String description;
-    private Date publishedAt;
+    private LocalDate publishedAt;
     
     @ManyToOne
     private Profile profile;
@@ -29,7 +29,7 @@ public class Post implements Serializable {
     public Post() {
     }
 
-    public Post(String description, Date publishedAt, Profile profile, List<Comment> userComments) {
+    public Post(String description, LocalDate publishedAt, Profile profile, List<Comment> userComments) {
         this.description = description;
         this.publishedAt = publishedAt;
         this.profile = profile;
@@ -40,10 +40,6 @@ public class Post implements Serializable {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -52,11 +48,11 @@ public class Post implements Serializable {
         this.description = description;
     }
 
-    public Date getPublishedAt() {
+    public LocalDate getPublishedAt() {
         return publishedAt;
     }
 
-    public void setPublishedAt(Date publishedAt) {
+    public void setPublishedAt(LocalDate publishedAt) {
         this.publishedAt = publishedAt;
     }
 
