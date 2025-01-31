@@ -33,10 +33,10 @@
         %>        
         <p><%=p.getDescription() %></p>
         <p><%=HomeFunctions.getProfileName(p.getProfile().getId()) %></p>
-        <p>Comments: <%=p.getUserComments().size() %></p>
-        <p>Comments: <%=p.getPublishedAt() %></p>        
+        <a href="postComments.jsp?id=<%=p.getId()%>">Comments: <%=p.getUserComments().size() %></a>
+        <p>Date published: <%=p.getPublishedAt() %></p>        
         <%}%>  
         
-        
+        <a href="SvUser">Sign out</a>
     </body>
 </html>
