@@ -55,7 +55,7 @@ public class SvUserCreateAccount extends HttpServlet {
                 userController.createUser(newUserAccount);
 
                 HttpSession userSession = request.getSession();
-                userSession.setAttribute("profileId", newUserAccount.getProfile().getId());
+                userSession.setAttribute("profile", newUserAccount.getProfile());
                 response.sendRedirect("home.jsp");
 
             } catch (PreexistingEntityException e) {

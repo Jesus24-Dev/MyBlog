@@ -40,7 +40,7 @@ public class SvUser extends HttpServlet {
             } else {
                 if (user.getPassword().equals(password)){
                     HttpSession userSession = request.getSession();
-                    userSession.setAttribute("profileId", user.getProfile().getId());
+                    userSession.setAttribute("profile", user.getProfile());
                     response.sendRedirect("home.jsp");
                 } else {
                     request.setAttribute("errorSignIn", "password don't match");
