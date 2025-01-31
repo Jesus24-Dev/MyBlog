@@ -1,6 +1,7 @@
 
 package database;
 
+import com.jesus24dev.myblog.persistence.controllers.exceptions.PreexistingEntityException;
 import com.jesus24dev.myblog.persistence.models.Comment;
 import com.jesus24dev.myblog.persistence.models.Post;
 import com.jesus24dev.myblog.persistence.models.Profile;
@@ -11,7 +12,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class DatabaseTest {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws PreexistingEntityException {
         //Create new instance of PersistenceServices
         PersistenceServices ps = new PersistenceServices(); 
         
