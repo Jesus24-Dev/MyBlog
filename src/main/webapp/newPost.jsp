@@ -10,5 +10,6 @@
             <textarea name="descriptionPost"></textarea>
             <button type="submit">Create</button>
         </form>
+        <a href="home.jsp">Go to home</a>
     </body>
 </html>
