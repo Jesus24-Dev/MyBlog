@@ -23,7 +23,9 @@ public class SvUser extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            
+            HttpSession userSession = request.getSession();
+            userSession.invalidate();
+            response.sendRedirect("index.jsp");
     }
 
     @Override
