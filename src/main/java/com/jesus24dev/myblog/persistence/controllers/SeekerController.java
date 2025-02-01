@@ -1,0 +1,72 @@
+
+package com.jesus24dev.myblog.persistence.controllers;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
+
+public class SeekerController {
+
+    private String url = "jdbc:mysql://localhost:3306/myblog?serverTimezone=UTC";
+    private Properties props;
+
+    public SeekerController() {
+        props = new Properties();
+        props.setProperty("user", "root");
+        props.setProperty("password", "123456");
+    }
+
+    public Connection getConnection() throws SQLException {
+        return DriverManager.getConnection(url, props);
+    }
+
+    public List<Long> getPostId(String text) {
+        List<Long> postId = new ArrayList<>();
+        String query = "SELECT ID FROM post WHERE description LIKE ?";
+
+        try (Connection conn = getConnection();
+             PreparedStatement pstm = conn.prepareStatement(query)) {
+
+            pstm.setString(1, "%" + text + "%"); 
+
+            try (ResultSet rs = pstm.executeQuery()) {
+                while (rs.next()) {
+                    postId.add(rs.getLong("ID"));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();  
+            return new ArrayList<>();  
+        }
+
+        return postId;
+    }
+
+    public List<String> getUsersEmail(String text) {
+        List<String> emailList = new ArrayList<>();
+        String query = "SELECT EMAIL FROM user WHERE name LIKE ? OR lastname LIKE ?";
+
+        try (Connection conn = getConnection();
+             PreparedStatement pstm = conn.prepareStatement(query)) {
+
+            pstm.setString(1, "%" + text + "%");  
+            pstm.setString(2, "%" + text + "%");  
+
+            try (ResultSet rs = pstm.executeQuery()) {
+                while (rs.next()) {
+                    emailList.add(rs.getString("EMAIL"));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();  
+            return new ArrayList<>();  
+        }
+
+        return emailList;
+    }
+}
