@@ -25,6 +25,7 @@
         <img src="<%=profile.getProfilePicture() %>">
         <a href="SvProfile?id=<%=profile.getId() %>"><%=HomeFunctions.getProfileFulllName(profile.getId()) %></a>
         <a href="newPost.jsp">POST</a>
+        <a href="searchPost.jsp">SEARCH</a>
         
         <!-- Load posts -->        
         <%
