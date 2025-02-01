@@ -13,9 +13,9 @@ public class SeekerController {
         return idList;
     }
     
-    public ArrayList<String> getUsersEmail(String text){
-        ArrayList<String> emailList = new ArrayList(ps.seekerController.getUsersEmail(text));
+    public ArrayList<Long> getProfileId(String text){
+        ArrayList<Long> idList = new ArrayList(ps.seekerController.getProfileId(text));
         
-        return emailList;
+        return idList;
     }
 }

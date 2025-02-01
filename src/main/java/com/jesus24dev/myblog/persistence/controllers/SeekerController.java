@@ -47,9 +47,9 @@ public class SeekerController {
         return postId;
     }
 
-    public List<String> getUsersEmail(String text) {
-        List<String> emailList = new ArrayList<>();
-        String query = "SELECT EMAIL FROM user WHERE name LIKE ? OR lastname LIKE ?";
+    public List<Long> getProfileId(String text) {
+        List<Long> idList = new ArrayList<>();
+        String query = "SELECT PROFILE_ID FROM user WHERE name LIKE ? OR lastname LIKE ?";
 
         try (Connection conn = getConnection();
              PreparedStatement pstm = conn.prepareStatement(query)) {
@@ -59,7 +59,7 @@ public class SeekerController {
 
             try (ResultSet rs = pstm.executeQuery()) {
                 while (rs.next()) {
-                    emailList.add(rs.getString("EMAIL"));
+                    idList.add(rs.getLong("PROFILE_ID"));
                 }
             }
         } catch (SQLException e) {
@@ -67,6 +67,6 @@ public class SeekerController {
             return new ArrayList<>();  
         }
 
-        return emailList;
+        return idList;
     }
 }
