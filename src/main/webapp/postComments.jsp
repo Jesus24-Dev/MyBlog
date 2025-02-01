@@ -1,3 +1,4 @@
+<%@page import="com.jesus24dev.myblog.persistence.models.Profile"%>
 <%@page import="com.jesus24dev.myblog.persistence.models.Post"%>
 <%@page import="com.jesus24dev.myblog.logic.utils.CommentFunctions"%>
 <%@page import="java.util.ArrayList"%>
@@ -13,6 +14,9 @@
         <%
             Long idPost = Long.parseLong(request.getParameter("id"));
             Post post = CommentFunctions.getPostInfo(idPost);
+            Profile profile = (Profile) request.getSession().getAttribute("profile"); 
+            Long idProfileSession = profile.getId();
+            
         %>   
         
         <h2>Post</h2> 
@@ -29,7 +33,14 @@
         %>        
                 <p><%=c.getDescription() %></p>
                 <p><%=CommentFunctions.getProfileName(c.getProfile().getId()) %></p>
-                <p>Date published: <%=c.getPublishedAt() %></p>        
+                
+               <% if (idProfileSession == c.getProfile().getId()){%>
+                    <a href="commentEdit.jsp?id=<%=c.getId()%>">Edit</a>
+                    <a href="commentDelete.jsp?id=<%=c.getId()%>">Delete</a>
+                <%} %>
+                
+                <p>Date published: <%=c.getPublishedAt() %></p>
+                
         <%      } 
             }%> 
             
