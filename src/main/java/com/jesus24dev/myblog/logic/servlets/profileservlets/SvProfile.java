@@ -25,10 +25,6 @@ public class SvProfile extends HttpServlet {
             HttpSession session = request.getSession();
             Long id = Long.parseLong(request.getParameter("id"));
             Profile profile = (Profile) session.getAttribute("profile");
-            
-            if(id == profile.getId()){
-                System.out.println("COINCIDEN");
-            }
             response.sendRedirect("profile.jsp?id="+id);
     }
 
