@@ -61,12 +61,12 @@ public class SvUserCreateAccount extends HttpServlet {
             } catch (PreexistingEntityException e) {
                 request.setAttribute("errorCreateAccount", e.getMessage());
                 profileController.deleteProfile(newEmptyProfile.getId());
-                request.getRequestDispatcher("index.jsp").forward(request, response);
+                request.getRequestDispatcher("register.jsp").forward(request, response);
 
             } catch (PersistenceException e) {
                 request.setAttribute("errorCreateAccount", "Unexpected database error.");
                 profileController.deleteProfile(newEmptyProfile.getId());
-                request.getRequestDispatcher("index.jsp").forward(request, response);
+                request.getRequestDispatcher("register.jsp").forward(request, response);
             }     
     }
 
