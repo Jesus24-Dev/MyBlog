@@ -19,6 +19,15 @@
             color: white;
             min-height: 100vh;
         }
+        .sidebar .btn {
+        color: #1e5631;
+        background-color: white;
+        border: none;
+        margin-bottom: 1rem;
+      }
+      .sidebar .btn:hover {
+        background-color: #d3e9d7;
+      }
         .profile-img {
             border-radius: 50%;
             width: 100px;
@@ -49,35 +58,39 @@
         <%Profile profile = (Profile) request.getSession().getAttribute("profile"); %>
              
         <!-- Load profile info -->
-        <div class="row">
+        <div class="container-fluid">
+            <div class="row">
 
-        <div class="col-md-3 col-lg-2 sidebar d-flex flex-column align-items-center py-4">
-            <img
-              src="<%=profile.getProfilePicture() %>"
-              alt="Profile"
-              class="profile-img mb-3"
-            />
-            <a href="SvProfile?id=<%=profile.getId() %>" class="mb-4 h5 text-decoration-none text-light"><%=HomeFunctions.getProfileFulllName(profile.getId()) %></a>
-            <a href="newPost.jsp" class="btn btn-light btn-custom">POST</a>
-            <a href="searchPost.jsp" class="btn btn-light btn-custom">SEARCH</a>
-            <a href="SvUser" class="btn btn-light btn-custom">LOG OUT</a>
-          </div>
+            <div class="col-md-3 col-lg-2 sidebar d-flex flex-column align-items-center py-4">
+                <img
+                src="<%=profile.getProfilePicture() %>"
+                alt="Profile"
+                class="profile-img mb-3"
+                />
+                <a href="SvProfile?id=<%=profile.getId() %>" class="mb-4 h5 text-decoration-none text-light"><%=HomeFunctions.getProfileFulllName(profile.getId()) %></a>
+                <a href="newPost.jsp" class="btn btn-light btn-custom">POST</a>
+                <a href="searchPost.jsp" class="btn btn-light btn-custom">SEARCH</a>
+                <a href="SvUser" class="btn btn-light btn-custom">LOG OUT</a>
+            </div>
 
-        <!-- Posts -->         
-        <div class="col-md-9 col-lg-10 py-4 overflow-auto">
-            <!-- Load posts -->  
-            <%
-                ArrayList<Post> postList = HomeFunctions.getPostList();
-                for (Post p : postList){       
-            %>        
-            <div class="post-card p-3">
-                    <p><%=p.getDescription() %></p>
-                    <p class="text-success fw-bold mb-0"><%=HomeFunctions.getProfileName(p.getProfile().getId()) %></p>
-                    <a href="postComments.jsp?id=<%=p.getId()%>" class="text-muted">Comments: <%=p.getUserComments().size() %></a>
-                    <p>Date published: <%=p.getPublishedAt() %></p>
-            </div>        
-                <%}%>   
-        </div> 
+            <!-- Posts -->         
+            <div class="col-md-9 col-lg-10 py-4 overflow-auto">
+                <!-- Load posts -->  
+                <%
+                    ArrayList<Post> postList = HomeFunctions.getPostList();
+                    for (Post p : postList){       
+                %>        
+                <div class="post-card p-3">
+                        <p><%=p.getDescription() %></p>
+                        <p><a href="postComments.jsp?id=<%=p.getId()%>" class="text-muted">Comments: <%=p.getUserComments().size() %></a></p>
+                        <p>Date published: <%=p.getPublishedAt() %></p>
+                        <p><a href="SvProfile?id=<%=p.getId() %>" class="text-success fw-bold mb-0"><%=HomeFunctions.getProfileName(p.getProfile().getId()) %></a></p>
+                        
+                </div>        
+                    <%}%>   
+            </div>
+        </div>        
+    </div> 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>
