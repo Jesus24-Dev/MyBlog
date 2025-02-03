@@ -31,12 +31,6 @@
       .sidebar .btn:hover {
         background-color: #d3e9d7;
       }
-        .profile-img {
-            border-radius: 50%;
-            width: 100px;
-            height: 100px;
-            object-fit: cover;
-        }
         .post-card {
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
@@ -45,12 +39,6 @@
         .btn-custom {
             width: 75%;
             margin-bottom: 0.5rem;
-        }
-        .profile-img2 {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
         }
         @media (max-width: 768px) {
             .sidebar {
@@ -103,19 +91,13 @@
         profileToSee = profile;
         isEqual = true;
     }
-    
-    String imageUrl = "https://static.vecteezy.com/system/resources/previews/005/544/718/non_2x/profile-icon-design-free-vector.jpg";
     String name = ProfileFunctions.getProfileName(profileToSee.getId());
+
 %>
 
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-3 col-lg-2 sidebar d-flex flex-column align-items-center py-4">
-                    <img
-                    src="<%=profile.getProfilePicture() %>"
-                    alt="Profile"
-                    class="profile-img mb-3"
-                    />
                     <a href="SvProfile?id=<%=profile.getId() %>" class="mb-4 h5 text-decoration-none text-light"><%=HomeFunctions.getProfileFulllName(profile.getId()) %></a>
                     <a href="newPost.jsp" class="btn btn-light btn-custom">POST</a>
                     <a href="home.jsp" class="btn btn-light btn-custom">HOME</a>
@@ -124,11 +106,6 @@
                 </div>
                 <div class="col-md-9 col-lg-10 py-4">
                     <div class="d-flex flex-column align-items-center mb-5 border-green">
-                        <%if(profileToSee.getProfilePicture() != null){%>
-                            <img class="profile-img mb-3" src="<%=profileToSee.getProfilePicture() %>">
-                         <%} else {%>
-                             <img class="profile-img mb-3" src="<%=imageUrl%>">
-                         <%}%> 
                         <h4 class="mb-1"><%=name%></h4>
                         <p> 
                             <% if(profileToSee.getBiography() != null){%>

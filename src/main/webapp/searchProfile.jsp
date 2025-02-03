@@ -55,12 +55,6 @@
                 color: white;
                 min-height: 100vh;
             }
-            .profile-img {
-                border-radius: 50%;
-                width: 100px;
-                height: 100px;
-                object-fit: cover;
-            }
             .btn-custom {
                 width: 75%;
                 margin-bottom: 0.5rem;
@@ -98,11 +92,6 @@
     <div class="container-fluid">    
         <div class="row">
             <div class="col-md-3 col-lg-2 sidebar d-flex flex-column align-items-center py-4">
-                <img
-                src="<%=profile.getProfilePicture() %>"
-                alt="Profile"
-                class="profile-img mb-3"
-                />
                 <a href="SvProfile?id=<%=profile.getId() %>" class="mb-4 h5 text-decoration-none text-light"><%=HomeFunctions.getProfileFulllName(profile.getId()) %></a>
                 <a href="newPost.jsp" class="btn btn-light btn-custom">POST</a>
                 <a href="home.jsp" class="btn btn-light btn-custom">HOME</a>

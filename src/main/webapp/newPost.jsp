@@ -25,12 +25,6 @@ import="com.jesus24dev.myblog.logic.utils.HomeFunctions"%>
       .sidebar .btn:hover {
         background-color: #d3e9d7;
       }
-      .profile-img {
-        border-radius: 50%;
-        width: 100px;
-        height: 100px;
-        object-fit: cover;
-      }
       .post-card {
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         border-radius: 8px;
@@ -71,28 +65,16 @@ import="com.jesus24dev.myblog.logic.utils.HomeFunctions"%>
     </style>
   </head>
   <body>
-    <%
-        HttpSession mySession = request.getSession(false);
-
-    
-    if (mySession == null || mySession.getAttribute("profile") == null) {
-        response.sendRedirect("errorpages/error403.jsp"); 
-        return;
-    }
-        
-        Profile profile = (Profile) request.getSession().getAttribute("profile");
-    %>
+    <% HttpSession mySession = request.getSession(false); if (mySession == null
+    || mySession.getAttribute("profile") == null) {
+    response.sendRedirect("errorpages/error403.jsp"); return; } Profile profile
+    = (Profile) request.getSession().getAttribute("profile"); %>
 
     <div class="container-fluid">
       <div class="row">
         <div
           class="col-md-3 col-lg-2 sidebar d-flex flex-column align-items-center py-4"
         >
-          <img
-            src="<%=profile.getProfilePicture() %>"
-            alt="Profile"
-            class="profile-img mb-3"
-          />
           <a
             href="SvProfile?id=<%=profile.getId() %>"
             class="mb-4 h5 text-decoration-none text-light"
