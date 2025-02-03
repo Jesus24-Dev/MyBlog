@@ -1,6 +1,7 @@
 
 package com.jesus24dev.myblog.logic.servlets.profileservlets;
 
+import com.jesus24dev.myblog.logic.controllers.ProfileController;
 import com.jesus24dev.myblog.persistence.models.Profile;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,6 +14,7 @@ import jakarta.servlet.http.HttpSession;
 
 @WebServlet(name = "SvProfile", urlPatterns = {"/SvProfile"})
 public class SvProfile extends HttpServlet {
+    ProfileController profileController = new ProfileController();
        
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -25,7 +27,13 @@ public class SvProfile extends HttpServlet {
             HttpSession session = request.getSession();
             Long id = Long.parseLong(request.getParameter("id"));
             Profile profile = (Profile) session.getAttribute("profile");
-            response.sendRedirect("profile.jsp?id="+id);
+            Profile profileToTest = profileController.getProfile(id);
+            if (profileToTest == null) {
+                request.getRequestDispatcher("errorpages/error404.jsp").forward(request, response);
+            } else {
+                response.sendRedirect("profile.jsp?id="+id);
+            }
+            
     }
 
     @Override
