@@ -97,7 +97,6 @@
                 />
                 <a href="SvProfile?id=<%=profile.getId() %>" class="mb-4 h5 text-decoration-none text-light"><%=HomeFunctions.getProfileFulllName(profile.getId()) %></a>
                 <a href="newPost.jsp" class="btn btn-light btn-custom">POST</a>
-                <a href="searchPost.jsp" class="btn btn-light btn-custom">SEARCH</a>
                 <a href="home.jsp" class="btn btn-light btn-custom">HOME</a>
                 <a href="SvUser" class="btn btn-light btn-custom">LOG OUT</a>
             </div>
@@ -113,10 +112,12 @@
 
             <div class="row mb-4">
                 <div class="col text-center">
-                <a href="searchPost.jsp" class="btn tab-btn w-100 w-md-25 mb-2 mb-md-0">
-                    POST
-                </a>
-                <a href="searchProfile.jsp" class="btn tab-btn active w-100 w-md-25">PROFILE</a>
+                    <a href="searchPost.jsp" class="btn tab-btn w-100 w-md-25 mb-2 mb-md-0">
+                        POST
+                    </a>
+                </div>
+                <div class="col text-center">
+                    <a href="searchProfile.jsp" class="btn tab-btn active w-100 w-md-25">PROFILE</a>
                 </div>
             </div>
             <div class="col-md-9 col-lg-10 py-4 overflow-auto">
