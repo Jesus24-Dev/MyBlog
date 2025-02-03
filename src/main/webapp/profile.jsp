@@ -110,7 +110,7 @@
                         </p>
                     </div>
                     <div class="row">
-                        <div class="col-md-9 col-lg-10 py-4 overflow-auto">
+                        <div class="col-md-9 col-lg-10 py-4 overflow-auto d-flex flex-column-reverse">
                             <!-- Load posts -->  
                             <%
                                 ArrayList<Post> postList = ProfileFunctions.getPostList(idProfileToSee);

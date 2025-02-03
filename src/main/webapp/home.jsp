@@ -74,7 +74,7 @@
             </div>
 
             <!-- Posts -->         
-            <div class="col-md-9 col-lg-10 py-4 overflow-auto">
+            <div class="col-md-9 col-lg-10 py-4 overflow-auto d-flex flex-column-reverse">
                 <!-- Load posts -->  
                 <%
                     ArrayList<Post> postList = HomeFunctions.getPostList();
@@ -84,7 +84,7 @@
                         <p><%=p.getDescription() %></p>
                         <p><a href="postComments.jsp?id=<%=p.getId()%>" class="text-muted">Comments: <%=p.getUserComments().size() %></a></p>
                         <p>Date published: <%=p.getPublishedAt() %></p>
-                        <p><a href="SvProfile?id=<%=p.getId() %>" class="text-success fw-bold mb-0"><%=HomeFunctions.getProfileName(p.getProfile().getId()) %></a></p>
+                        <p><a href="SvProfile?id=<%=p.getProfile().getId() %>" class="text-success fw-bold mb-0"><%=HomeFunctions.getProfileName(p.getProfile().getId()) %></a></p>
                         
                 </div>        
                     <%}%>   
