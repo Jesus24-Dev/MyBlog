@@ -89,6 +89,15 @@
     </head>
     <body class="overflow-hidden">
 <%
+    HttpSession mySession = request.getSession(false);
+
+    
+    if (mySession == null || mySession.getAttribute("profile") == null) {
+        response.sendRedirect("errorpages/error403.jsp"); 
+        return;
+    }
+    
+    
     String id = request.getParameter("id"); 
     Long idPost;
     

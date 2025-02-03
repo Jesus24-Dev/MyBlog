@@ -83,6 +83,14 @@
     </head>
     <body>
         <%
+            
+            HttpSession mySession = request.getSession(false);
+
+    
+    if (mySession == null || mySession.getAttribute("profile") == null) {
+        response.sendRedirect("errorpages/error403.jsp"); 
+        return;
+    }
         ArrayList<Profile> profileList = (ArrayList) request.getAttribute("profileList");
         Profile profile = (Profile) request.getSession().getAttribute("profile"); 
     %>

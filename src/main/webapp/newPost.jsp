@@ -71,7 +71,16 @@ import="com.jesus24dev.myblog.logic.utils.HomeFunctions"%>
     </style>
   </head>
   <body>
-    <%Profile profile = (Profile) request.getSession().getAttribute("profile");
+    <%
+        HttpSession mySession = request.getSession(false);
+
+    
+    if (mySession == null || mySession.getAttribute("profile") == null) {
+        response.sendRedirect("errorpages/error403.jsp"); 
+        return;
+    }
+        
+        Profile profile = (Profile) request.getSession().getAttribute("profile");
     %>
 
     <div class="container-fluid">
