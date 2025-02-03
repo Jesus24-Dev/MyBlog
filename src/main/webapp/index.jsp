@@ -17,8 +17,6 @@
     </style>
   </head>
   <body>
-    <h1>MyBlog</h1>
-
     <% String errorSignInMessage = (String) request.getAttribute("errorSignIn");
     %>
 
