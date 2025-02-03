@@ -64,21 +64,41 @@
         </style>
     </head>
     <body>
-        <%Long idProfileToSee = Long.parseLong(request.getParameter("id"));
-        Profile profile = (Profile) request.getSession().getAttribute("profile"); 
-        boolean isEqual = false;
-        Profile profileToSee;
-        if(idProfileToSee != profile.getId()){
-                profileToSee = ProfileFunctions.profileToSee(idProfileToSee);
-            } else {
-                profileToSee = profile;
-                isEqual = true;
-            }
-        
-        String imageUrl = "https://static.vecteezy.com/system/resources/previews/005/544/718/non_2x/profile-icon-design-free-vector.jpg";
-                   
-        String name = ProfileFunctions.getProfileName(profileToSee.getId());
-        %>
+<%
+    String id = request.getParameter("id"); 
+    Long idProfileToSee;
+
+    if (id == null || id.trim().isEmpty()) {
+        response.sendRedirect("errorpages/error404.jsp");
+        return;
+    }
+    
+    try {
+        idProfileToSee = Long.parseLong(id);
+    } catch (NumberFormatException e) {
+        response.sendRedirect("errorpages/error404.jsp");
+        return;
+    }
+    
+    Profile profile = (Profile) request.getSession().getAttribute("profile"); 
+    boolean isEqual = false;
+    Profile profileToSee;
+    
+    if (idProfileToSee != profile.getId()) {
+        profileToSee = ProfileFunctions.profileToSee(idProfileToSee);
+        if (profileToSee == null) {
+            response.sendRedirect("errorpages/error404.jsp");
+            return;
+        }
+    } else {
+        profileToSee = profile;
+        isEqual = true;
+    }
+    
+    String imageUrl = "https://static.vecteezy.com/system/resources/previews/005/544/718/non_2x/profile-icon-design-free-vector.jpg";
+    String name = ProfileFunctions.getProfileName(profileToSee.getId());
+%>
+
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-3 col-lg-2 sidebar d-flex flex-column align-items-center py-4">

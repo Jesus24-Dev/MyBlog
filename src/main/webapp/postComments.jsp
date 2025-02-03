@@ -88,14 +88,39 @@
         </style>
     </head>
     <body class="overflow-hidden">
+<%
+    String id = request.getParameter("id"); 
+    Long idPost;
+    
+    if (id == null || id.trim().isEmpty()) {
+        response.sendRedirect("errorpages/error404.jsp");
+        return;
+    }
+    
+    try {
+        idPost = Long.parseLong(id);
+    } catch (NumberFormatException e) {
+        response.sendRedirect("errorpages/error404.jsp");
+        return;
+    }
 
-        <%
-        Long idPost = Long.parseLong(request.getParameter("id"));
-        Post post = CommentFunctions.getPostInfo(idPost);
-        Profile profile = (Profile) request.getSession().getAttribute("profile"); 
-        Long idProfileSession = profile.getId();
-        
-    %>  
+    Post post = CommentFunctions.getPostInfo(idPost);
+    
+    if (post == null) {
+        response.sendRedirect("errorpages/error404.jsp");
+        return;
+    }
+
+    Profile profile = (Profile) request.getSession().getAttribute("profile"); 
+
+    if (profile == null) {
+        response.sendRedirect("errorpages/error404.jsp");
+        return;
+    }
+
+    Long idProfileSession = profile.getId();       
+%>
+
 
         <div class="container-fluid ">
             <div class="row">
