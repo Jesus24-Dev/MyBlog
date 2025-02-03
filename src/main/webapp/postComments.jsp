@@ -118,7 +118,7 @@
                         <div class="col-md-8">
                           <div class="post-container">
                             <p> <%=post.getDescription() %></p>
-                            <p class="text-success fw-bold"><%=CommentFunctions.getProfileName(post.getProfile().getId())%>n</p>
+                            <p class="text-success fw-bold"><%=CommentFunctions.getProfileName(post.getProfile().getId())%></p>
                           </div>
                         </div>
                         <!-- Right content -->
