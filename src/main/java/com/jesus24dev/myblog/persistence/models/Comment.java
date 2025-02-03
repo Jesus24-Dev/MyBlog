@@ -7,7 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 public class Comment implements Serializable {
@@ -16,7 +16,7 @@ public class Comment implements Serializable {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     private String description;
-    private Date publishedAt;
+    private LocalDate publishedAt;
     
     @ManyToOne
     private Profile profile;
@@ -27,8 +27,7 @@ public class Comment implements Serializable {
     public Comment() {
     }
 
-    public Comment(Long id, String description, Date publishedAt, Profile profile, Post post) {
-        this.id = id;
+    public Comment(String description, LocalDate publishedAt, Profile profile, Post post) {
         this.description = description;
         this.publishedAt = publishedAt;
         this.profile = profile;
@@ -39,10 +38,6 @@ public class Comment implements Serializable {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -51,11 +46,11 @@ public class Comment implements Serializable {
         this.description = description;
     }
 
-    public Date getPublishedAt() {
+    public LocalDate getPublishedAt() {
         return publishedAt;
     }
 
-    public void setPublishedAt(Date publishedAt) {
+    public void setPublishedAt(LocalDate publishedAt) {
         this.publishedAt = publishedAt;
     }
 

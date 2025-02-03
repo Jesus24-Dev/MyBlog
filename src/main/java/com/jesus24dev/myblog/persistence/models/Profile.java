@@ -28,8 +28,7 @@ public class Profile implements Serializable {
     public Profile() {
     }
 
-    public Profile(Long id, String biography, byte[] profilePicture, List<Post> userPosts, List<Comment> userComments) {
-        this.id = id;
+    public Profile(String biography, byte[] profilePicture, List<Post> userPosts, List<Comment> userComments) {
         this.biography = biography;
         this.profilePicture = profilePicture;
         this.userPosts = userPosts;
@@ -38,10 +37,6 @@ public class Profile implements Serializable {
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getBiography() {
