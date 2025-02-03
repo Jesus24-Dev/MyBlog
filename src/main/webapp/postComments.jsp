@@ -141,7 +141,7 @@
                         <div class="col-md-8">
                           <div class="post-container">
                             <p> <%=post.getDescription() %></p>
-                            <p class="text-success fw-bold"><%=CommentFunctions.getProfileName(post.getProfile().getId())%></p>
+                            <a href="profile.jsp?id=<%=post.getProfile().getId()%>" class="text-success fw-bold"><%=CommentFunctions.getProfileName(post.getProfile().getId())%></a>
                           </div>
                         </div>
                         <!-- Right content -->
@@ -153,9 +153,9 @@
         %>        
         <div class="comment-box">
             <p><%=c.getDescription() %></p>
-            <p class="text-success fw-bold">
+            <a href="profile.jsp?id=<%=c.getProfile().getId()%>" class="text-success fw-bold">
                 <%=CommentFunctions.getProfileName(c.getProfile().getId()) %>
-            </p>
+            </a>
             <p>Date published: <%=c.getPublishedAt() %></p>
             <% if (idProfileSession == c.getProfile().getId()){%>
                 <a href="commentEdit.jsp?id=<%=c.getId()%>" class="text-success">Edit</a>
