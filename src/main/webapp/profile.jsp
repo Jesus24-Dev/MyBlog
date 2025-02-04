@@ -114,6 +114,10 @@
                                 <i>Not biography yet</i>
                             <%}%>
                         </p>
+                        
+                        <% if(isEqual){%>
+                            <p><a href="crudpages/editBiography.jsp?id=<%=profileToSee.getId()%>" class="text-success text-decoration-none">Edit biography</a></p>
+                        <%}%> 
                     </div>
                     <div class="row">
                         <div class="col-md-9 col-lg-10 py-4 overflow-auto d-flex flex-column-reverse">

@@ -124,7 +124,7 @@
                                 <div class="post-card p-3">
                                     <p><%=p.getDescription() %></p>
                                     <div class="d-flex justify-content-between">
-                                      <a href="SvProfile?id=<%=p.getId() %>" class="fw-bold text-success"><%=HomeFunctions.getProfileName(p.getProfile().getId()) %></a>
+                                        <a href="SvProfile?id=<%=p.getProfile().getId() %>" class="fw-bold text-success"><%=HomeFunctions.getProfileName(p.getProfile().getId()) %></a>
                                       <a href="postComments.jsp?id=<%=p.getId()%>" class="text-muted text-decoration-none">Comments: <%=p.getUserComments().size() %></a>
                                       <p>Date published: <%=p.getPublishedAt() %></p> 
                                     </div>

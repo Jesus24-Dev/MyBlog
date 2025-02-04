@@ -92,7 +92,6 @@ import="com.jesus24dev.myblog.logic.utils.HomeFunctions"%>
               name="descriptionPost"
               class="form-control mt-3 mb-4"
               rows="8"
-              placeholder="Write your post here..."
             >
             </textarea>
             <div class="d-flex justify-content-end">
@@ -102,7 +101,5 @@ import="com.jesus24dev.myblog.logic.utils.HomeFunctions"%>
         </div>
       </div>
     </div>
-
-    <a href="home.jsp">Go to home</a>
   </body>
 </html>
