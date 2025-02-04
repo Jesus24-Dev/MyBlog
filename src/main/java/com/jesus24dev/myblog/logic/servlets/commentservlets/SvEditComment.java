@@ -22,7 +22,11 @@ public class SvEditComment extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+            String postId = request.getParameter("post");
+            String commentId = request.getParameter("id");
+            commentController.deleteComment(Long.parseLong(commentId));
+            
+            response.sendRedirect("/MyBlog/postComments.jsp?id=" + postId);
     }
 
     @Override
