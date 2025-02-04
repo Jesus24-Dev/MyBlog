@@ -158,7 +158,7 @@
             </a>
             <p>Date published: <%=c.getPublishedAt() %></p>
             <% if (idProfileSession == c.getProfile().getId()){%>
-                <a href="crudpages/editComment.jsp?id=<%=c.getId()%>" class="text-success">Edit</a>
+                <a href="crudpages/editComment.jsp?id=<%=c.getId()%>&post=<%=post.getId()%>" class="text-success">Edit</a>
                 <a href="commentDelete.jsp?id=<%=c.getId()%>" class="text-success">Delete</a>
             <%} %>
           </div>
