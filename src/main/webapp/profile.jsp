@@ -131,8 +131,8 @@
                                     <p><a href="postComments.jsp?id=<%=p.getId()%>" class="text-muted">Comments: <%=p.getUserComments().size() %></a></p>
                                     <p>Date published: <%=p.getPublishedAt() %></p>
                                     <% if(isEqual){%>
-                                        <a href="postEdit.jsp?id=<%=p.getId()%>" class="text-decoration-none text-success">Edit post</a>
-                                        <a href="postDelete.jsp?id=<%=p.getId()%>" class="text-decoration-none text-success">Delete post</a>
+                                        <a href="crudpages/editPost.jsp?id=<%=p.getId()%>" class="text-decoration-none text-success">Edit post</a>
+                                        <a href="SvCrudPost?id=<%=p.getId()%>&profile=<%=profileToSee.getId() %>" class="text-decoration-none text-success">Delete post</a>
                                     <% }%>    
                             </div>        
                                 <%}%>   
