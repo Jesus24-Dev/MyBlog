@@ -92,8 +92,10 @@ import="com.jesus24dev.myblog.logic.utils.HomeFunctions"%>
               name="descriptionPost"
               class="form-control mt-3 mb-4"
               rows="8"
+              id="post"
             >
             </textarea>
+            <p class="text-success fw-bold"><span id="textMax">0</span>/250</p>
             <div class="d-flex justify-content-end">
               <button class="post-button">POST</button>
             </div>
@@ -101,5 +103,39 @@ import="com.jesus24dev.myblog.logic.utils.HomeFunctions"%>
         </div>
       </div>
     </div>
+
+    <script>
+      const textPost = document.getElementById("post");
+      const textMax = document.getElementById("textMax");
+      const button = document.querySelector(".post-button");
+      const maxLength = 250;
+      let count = 0;
+
+      const updateCounterAndButton = () => {
+        count = textPost.value.length;
+        textMax.textContent = count;
+
+        if (count > maxLength) {
+          button.disabled = true;
+        } else {
+          button.disabled = false;
+        }
+      };
+
+      textPost.addEventListener("input", (event) => {
+        if (
+          event.inputType === "insertText" ||
+          event.inputType === "deleteContentBackward"
+        ) {
+          updateCounterAndButton();
+        }
+      });
+
+      textPost.addEventListener("paste", (event) => {
+        setTimeout(() => {
+          updateCounterAndButton();
+        }, 0);
+      });
+    </script>
   </body>
 </html>

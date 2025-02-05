@@ -167,9 +167,10 @@
         <%      } 
             }%>
                           <form method="POST" action="SvComment">
-                            <input type="text" name="commentText" class="form-control my-2">
+                            <input type="text" name="commentText" class="form-control my-2" id="post">
+                            <p class="text-success fw-bold"><span id="textMax">0</span>/75</p>
                             <input type="hidden" name="id" value="<%=idPost%>">
-                            <button type="submit" class="btn-btn-post btn-post">POST</button>
+                            <button type="submit" class="btn-btn-post btn-post post-button">POST</button>
                         </form>                          
                         </div>
                       </div>
@@ -177,5 +178,38 @@
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+      const textPost = document.getElementById("post");
+      const textMax = document.getElementById("textMax");
+      const button = document.querySelector(".post-button");
+      const maxLength = 75;
+      let count = 0;
+
+      const updateCounterAndButton = () => {
+        count = textPost.value.length;
+        textMax.textContent = count;
+
+        if (count > maxLength) {
+          button.disabled = true;
+        } else {
+          button.disabled = false;
+        }
+      };
+
+      textPost.addEventListener("input", (event) => {
+        if (
+          event.inputType === "insertText" ||
+          event.inputType === "deleteContentBackward"
+        ) {
+          updateCounterAndButton();
+        }
+      });
+
+      textPost.addEventListener("paste", (event) => {
+        setTimeout(() => {
+          updateCounterAndButton();
+        }, 0);
+      });
+      </script>
     </body>
 </html>
