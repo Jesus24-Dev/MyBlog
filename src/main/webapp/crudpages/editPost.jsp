@@ -95,9 +95,11 @@
               <input
                 name="description"
                 class="form-control mt-3 mb-4"
-                type="text"
-                value="<%=description%>"
-              >
+                type="text"              
+                id="post"
+                value='<%=description%>'
+                >
+              <p class="text-success fw-bold"><span id="textMax">0</span>/250</p>
               <input type="hidden" name="id" value="<%= id%>">
               <input type="hidden" name="profileId" value="<%=profile.getId() %>">
               <div class="d-flex justify-content-end">
@@ -107,6 +109,39 @@
           </div>
         </div>
         </div>
-    
+     <script>
+      const textPost = document.getElementById("post");
+      const textMax = document.getElementById("textMax");
+      const button = document.querySelector(".post-button");
+      const maxLength = 250;
+      let count = 0;
+      
+
+      const updateCounterAndButton = () => {
+        count = textPost.value.length;
+        textMax.textContent = count;
+
+        if (count > maxLength) {
+          button.disabled = true;
+        } else {
+          button.disabled = false;
+        }
+      };
+
+      textPost.addEventListener("input", (event) => {
+        if (
+          event.inputType === "insertText" ||
+          event.inputType === "deleteContentBackward"
+        ) {
+          updateCounterAndButton();
+        }
+      });
+
+      textPost.addEventListener("paste", (event) => {
+        setTimeout(() => {
+          updateCounterAndButton();
+        }, 0);
+      });
+    </script>    
     </body>
 </html>
