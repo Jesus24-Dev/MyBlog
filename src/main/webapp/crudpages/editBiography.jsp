@@ -1,16 +1,18 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%> <%@page
-import="com.jesus24dev.myblog.persistence.models.Profile"%> <%@page
-import="com.jesus24dev.myblog.logic.utils.HomeFunctions"%>
+
+<%@page import="com.jesus24dev.myblog.logic.utils.HomeFunctions"%>
+<%@page import="com.jesus24dev.myblog.persistence.models.Profile"%>
+<%@page import="com.jesus24dev.myblog.persistence.models.Profile"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>MyBlog - New Post</title>
-    <link
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>MyBlog - Edit biography</title>
+            <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
-    <style>
+        <style>
       .sidebar {
         background-color: #2c5f2d;
         color: white;
@@ -63,48 +65,45 @@ import="com.jesus24dev.myblog.logic.utils.HomeFunctions"%>
         }
       }
     </style>
-  </head>
-  <body>
+    </head>
+    <body>
     <% HttpSession mySession = request.getSession(false); if (mySession == null
     || mySession.getAttribute("profile") == null) {
     response.sendRedirect("errorpages/error403.jsp"); return; } Profile profile
     = (Profile) request.getSession().getAttribute("profile"); %>
-
-    <div class="container-fluid">
-      <div class="row">
-        <div
-          class="col-md-3 col-lg-2 sidebar d-flex flex-column align-items-center py-4"
-        >
-          <a
-            href="SvProfile?id=<%=profile.getId() %>"
-            class="mb-4 h5 text-decoration-none text-light"
-            ><%=HomeFunctions.getProfileFulllName(profile.getId()) %></a
-          >
-          <a href="home.jsp" class="btn btn-light btn-custom">HOME</a>
-          <a href="searchPost.jsp" class="btn btn-light btn-custom">SEARCH</a>
-          <a href="SvUser" class="btn btn-light btn-custom">LOG OUT</a>
-        </div>
-
-        <div class="col-md-9 col-lg-10">
-          <form action="SvPost" method="POST" class="create-post-container">
-            <h6>Create post</h6>
-            <textarea
-              name="descriptionPost"
-              class="form-control mt-3 mb-4"
-              rows="8"
-              id="post"
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-3 col-lg-2 sidebar d-flex flex-column align-items-center py-4">
+            <a
+              href="SvProfile?id=<%=profile.getId() %>"
+              class="mb-4 h5 text-decoration-none text-light"
+              ><%=HomeFunctions.getProfileFulllName(profile.getId()) %></a
             >
-            </textarea>
-            <p class="text-success fw-bold"><span id="textMax">0</span>/250</p>
-            <div class="d-flex justify-content-end">
-              <button class="post-button">POST</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
+            <a href="/MyBlog/home.jsp" class="btn btn-light btn-custom">HOME</a>
+            <a href="/MyBlog/searchPost.jsp" class="btn btn-light btn-custom">SEARCH</a>
+            <a href="/MyBlog/SvUser" class="btn btn-light btn-custom">LOG OUT</a>
+          </div>
 
-    <script>
+          <div class="col-md-9 col-lg-10">
+            <form action="/MyBlog/SvEditProfile" method="POST" class="create-post-container">
+              <h6>Set new biography</h6>
+              <textarea
+                name="biography"
+                class="form-control mt-3 mb-4"
+                rows="8"
+                id="post"
+              >
+              </textarea>
+              <p class="text-success fw-bold"><span id="textMax">0</span>/250</p>
+              <input type="hidden" name="id" value="<%= profile.getId()%>"
+              <div class="d-flex justify-content-end">
+                <button class="post-button">POST</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        </div>
+              <script>
       const textPost = document.getElementById("post");
       const textMax = document.getElementById("textMax");
       const button = document.querySelector(".post-button");
@@ -137,5 +136,5 @@ import="com.jesus24dev.myblog.logic.utils.HomeFunctions"%>
         }, 0);
       });
     </script>
-  </body>
+    </body>
 </html>

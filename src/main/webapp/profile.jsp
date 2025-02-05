@@ -8,7 +8,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>MyBlog - Profile</title>
         <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
         rel="stylesheet"
@@ -114,6 +114,10 @@
                                 <i>Not biography yet</i>
                             <%}%>
                         </p>
+                        
+                        <% if(isEqual){%>
+                            <p><a href="crudpages/editBiography.jsp?id=<%=profileToSee.getId()%>" class="text-success text-decoration-none">Edit biography</a></p>
+                        <%}%> 
                     </div>
                     <div class="row">
                         <div class="col-md-9 col-lg-10 py-4 overflow-auto d-flex flex-column-reverse">
@@ -127,8 +131,8 @@
                                     <p><a href="postComments.jsp?id=<%=p.getId()%>" class="text-muted">Comments: <%=p.getUserComments().size() %></a></p>
                                     <p>Date published: <%=p.getPublishedAt() %></p>
                                     <% if(isEqual){%>
-                                        <a href="postEdit.jsp?id=<%=p.getId()%>" class="text-decoration-none text-success">Edit post</a>
-                                        <a href="postDelete.jsp?id=<%=p.getId()%>" class="text-decoration-none text-success">Delete post</a>
+                                        <a href="crudpages/editPost.jsp?id=<%=p.getId()%>" class="text-decoration-none text-success">Edit post</a>
+                                        <a href="SvCrudPost?id=<%=p.getId()%>&profile=<%=profileToSee.getId() %>" class="text-decoration-none text-success">Delete post</a>
                                     <% }%>    
                             </div>        
                                 <%}%>   

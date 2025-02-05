@@ -1,16 +1,18 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%> <%@page
-import="com.jesus24dev.myblog.persistence.models.Profile"%> <%@page
-import="com.jesus24dev.myblog.logic.utils.HomeFunctions"%>
+
+<%@page import="com.jesus24dev.myblog.logic.utils.HomeFunctions"%>
+<%@page import="com.jesus24dev.myblog.persistence.models.Profile"%>
+<%@page import="com.jesus24dev.myblog.logic.controllers.PostController"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>MyBlog - New Post</title>
-    <link
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>MyBlog - Edit Post</title>
+          <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
-    <style>
+        <style>
       .sidebar {
         background-color: #2c5f2d;
         color: white;
@@ -63,53 +65,57 @@ import="com.jesus24dev.myblog.logic.utils.HomeFunctions"%>
         }
       }
     </style>
-  </head>
-  <body>
-    <% HttpSession mySession = request.getSession(false); if (mySession == null
+    </head>
+    <body>
+        <% HttpSession mySession = request.getSession(false); if (mySession == null
     || mySession.getAttribute("profile") == null) {
-    response.sendRedirect("errorpages/error403.jsp"); return; } Profile profile
-    = (Profile) request.getSession().getAttribute("profile"); %>
+    response.sendRedirect("errorpages/error403.jsp"); return; }
+    Profile profile   = (Profile) request.getSession().getAttribute("profile");
+    String id = request.getParameter("id");
+    PostController pc = new PostController();
+    String description = pc.getPost(Long.parseLong(id)).getDescription();
+        %>
 
     <div class="container-fluid">
-      <div class="row">
-        <div
-          class="col-md-3 col-lg-2 sidebar d-flex flex-column align-items-center py-4"
-        >
-          <a
-            href="SvProfile?id=<%=profile.getId() %>"
-            class="mb-4 h5 text-decoration-none text-light"
-            ><%=HomeFunctions.getProfileFulllName(profile.getId()) %></a
-          >
-          <a href="home.jsp" class="btn btn-light btn-custom">HOME</a>
-          <a href="searchPost.jsp" class="btn btn-light btn-custom">SEARCH</a>
-          <a href="SvUser" class="btn btn-light btn-custom">LOG OUT</a>
-        </div>
-
-        <div class="col-md-9 col-lg-10">
-          <form action="SvPost" method="POST" class="create-post-container">
-            <h6>Create post</h6>
-            <textarea
-              name="descriptionPost"
-              class="form-control mt-3 mb-4"
-              rows="8"
-              id="post"
+        <div class="row">
+          <div class="col-md-3 col-lg-2 sidebar d-flex flex-column align-items-center py-4">
+            <a
+              href="SvProfile?id=<%=profile.getId() %>"
+              class="mb-4 h5 text-decoration-none text-light"
+              ><%=HomeFunctions.getProfileFulllName(profile.getId()) %></a
             >
-            </textarea>
-            <p class="text-success fw-bold"><span id="textMax">0</span>/250</p>
-            <div class="d-flex justify-content-end">
-              <button class="post-button">POST</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
+            <a href="/MyBlog/home.jsp" class="btn btn-light btn-custom">HOME</a>
+            <a href="/MyBlog/searchPost.jsp" class="btn btn-light btn-custom">SEARCH</a>
+            <a href="/MyBlog/SvUser" class="btn btn-light btn-custom">LOG OUT</a>
+          </div>
 
-    <script>
+          <div class="col-md-9 col-lg-10">
+            <form action="/MyBlog/SvCrudPost" method="POST" class="create-post-container">
+              <h6>Edit Post</h6>
+              <input
+                name="description"
+                class="form-control mt-3 mb-4"
+                type="text"              
+                id="post"
+                value='<%=description%>'
+                >
+              <p class="text-success fw-bold"><span id="textMax">0</span>/250</p>
+              <input type="hidden" name="id" value="<%= id%>">
+              <input type="hidden" name="profileId" value="<%=profile.getId() %>">
+              <div class="d-flex justify-content-end">
+                <button class="post-button">POST</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        </div>
+     <script>
       const textPost = document.getElementById("post");
       const textMax = document.getElementById("textMax");
       const button = document.querySelector(".post-button");
       const maxLength = 250;
       let count = 0;
+      
 
       const updateCounterAndButton = () => {
         count = textPost.value.length;
@@ -136,6 +142,6 @@ import="com.jesus24dev.myblog.logic.utils.HomeFunctions"%>
           updateCounterAndButton();
         }, 0);
       });
-    </script>
-  </body>
+    </script>    
+    </body>
 </html>

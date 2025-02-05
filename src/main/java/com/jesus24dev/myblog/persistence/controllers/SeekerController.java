@@ -12,13 +12,13 @@ import java.util.Properties;
 
 public class SeekerController {
 
-    private String url = "jdbc:mysql://localhost:3306/myblog?serverTimezone=UTC";
+    private String url = "jdbc:mysql://localhost:3306/DATABASENAME?serverTimezone=UTC";
     private Properties props;
 
     public SeekerController() {
         props = new Properties();
-        props.setProperty("user", "root");
-        props.setProperty("password", "123456");
+        props.setProperty("user", "YOUR USER");
+        props.setProperty("password", "YOUR PASSWORD");
     }
 
     public Connection getConnection() throws SQLException {
